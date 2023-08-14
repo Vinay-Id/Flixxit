@@ -10,7 +10,7 @@ import movieRoutes from "./routes/movieRoutes.js";
 import watchlistRoutes from "./routes/watchlistRoutes.js";
 import cors from "cors";
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 connectDB();
 

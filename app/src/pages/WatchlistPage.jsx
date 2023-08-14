@@ -15,7 +15,7 @@ const Watchlist = () => {
     const fetchWatchlist = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/watchlist/liked/${userInfo._id}`
+          `/api/watchlist/liked/${userInfo._id}`
         );
         setMovies(response.data.movies);
         setHovered(Array(response.data.movies.length).fill(false));
@@ -28,7 +28,7 @@ const Watchlist = () => {
 
   const removeFromWatchlist = async (movieId) => {
     try {
-      await axios.put("http://localhost:5000/api/watchlist/remove", {
+      await axios.put("/api/watchlist/remove", {
         userId: userInfo._id,
         movieId: movieId,
       });

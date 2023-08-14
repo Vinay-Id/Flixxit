@@ -57,7 +57,7 @@ const AboutUs = () => {
           </p>
           <p>
             {" "}
-            <pre>Email: help@flixxit.com | Phone: 1234567890</pre>
+            Email: help@flixxit.com | Phone: 1234567890
           </p>
         </div>
       </div>

@@ -42,7 +42,7 @@ const Profile = () => {
   const getMovieForUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/movie/all/${userInfo._id}`
+        `/api/movie/all/${userInfo._id}`
       );
       setWatched(response.data);
     } catch (error) {
@@ -75,7 +75,7 @@ const Profile = () => {
   const handleDelete = async (movieId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/movie/delete/${userInfo._id}/${movieId}`
+        `/api/movie/delete/${userInfo._id}/${movieId}`
       );
       toast.success(response.data.message);
       getMovieForUser();
@@ -93,6 +93,7 @@ const Profile = () => {
       const res = await updateProfile({
         _id: userInfo._id,
         preference: selectedGenre,
+        jwt:userInfo.jwt
       }).unwrap();
       dispatch(setCredentials(res));
       toast.success("Profile updated successfully");

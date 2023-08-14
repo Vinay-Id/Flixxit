@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PaymentPage.css";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { membership } from "../slices/movieSlice";
 import { toast } from 'react-toastify';
 
@@ -23,16 +23,14 @@ const PaymentPage = () => {
   const handlePlanChange = (plan) => {
     setSelectedPlan(plan);
   };
-
+  const dispatch= useDispatch()
   const handlePayNow = () => {
 
     dispatch(membership())
     toast.success(`Payment successful for ${plans[selectedPlan].name}`);
     navigate("/profile");
   };
-  const dispatch= useDispatch()
-  const checkMember = useSelector((state) => state.myMovie.plusUser);
-  console.log(checkMember);
+  
   return (
     <div className="payment-page">
       <div className="payment-container">

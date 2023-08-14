@@ -40,14 +40,6 @@ const VideoPlayer = ({ play, setPlay }) => {
             attributes: {
               controlsList: "nodownload", 
             },
-            tracks: [
-              {
-                kind: "subtitles",
-                src: "subs/subtitles_en.vtt",
-                srcLang: "en",
-                default: true,
-              },
-            ],
           },
         }}
       />

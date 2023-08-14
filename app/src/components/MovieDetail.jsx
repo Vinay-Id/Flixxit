@@ -37,7 +37,7 @@ const MovieDetailPage = () => {
 
   const createMovieForUser = useCallback(async () => {
     try {
-      await axios.post(`http://localhost:5000/api/movie/${id}`, {
+      await axios.post(`/api/movie/${id}`, {
         movieTitle: movieDetails.title,
         movieImage: `https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path}`,
         user: userInfo._id,
@@ -65,7 +65,7 @@ const MovieDetailPage = () => {
   const fetchVote = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/movie/${id}/votes/${userInfo._id}`
+        `/api/movie/${id}/votes/${userInfo._id}`
       );
 
       setUserVote(response.data.voteData.movieVote);
@@ -84,7 +84,7 @@ const MovieDetailPage = () => {
 
   const updateVoteType = async (movieVote) => {
     try {
-      await axios.put(`http://localhost:5000/api/movie/vote/${id}`, {
+      await axios.put(`/api/movie/vote/${id}`, {
         movieVote,
         user: userInfo._id,
       });
@@ -99,7 +99,7 @@ const MovieDetailPage = () => {
   const addToWatchlist = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/watchlist/add",
+        "/api/watchlist/add",
         {
           userId: userInfo._id,
           data: movieDetails,
