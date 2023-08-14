@@ -1,0 +1,29 @@
+.about-us-page {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.about-us-container{
+  margin-top: 70px;
+}
+.about-us-page h1{
+  text-align: center;
+  color: white;
+}
+.section {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+}
+.section h2{
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,146 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.logo a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #e50914;
+  margin: 0px 20px;
+  font-size: 30px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+}
+
+.search-bar form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar input[type="text"] {
+  color: black;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-bar button[type="submit"] {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #e50914;
+  color: white;
+  cursor: pointer;
+}
+
+.links a img {
+  width: 25px;
+}
+
+.links a.active,
+.links a:hover {
+  color: #e50914;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .logo a {
+    font-size: 24px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .search-bar {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .search-bar input[type="text"] {
+    width: 100%;
+  }
+
+  .search-bar button[type="submit"] {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav {position: sticky;}
+  .logo a {
+    font-size: 20px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .search-bar {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .search-bar input[type="text"] {
+    width: 100%;
+    padding: 6px 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo a {
+    font-size: 18px;
+    margin: 0px 10px;
+  }
+}

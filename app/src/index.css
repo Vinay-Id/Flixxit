@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  background: rgb(1, 0, 25);
+  background: linear-gradient(
+    90deg,
+    rgb(2, 0, 26) 0%,
+    rgba(0, 0, 0, 1) 58%,
+    rgb(0, 0, 0) 100%
+  );
+  /* background: rgb(1, 0, 25);
+background: linear-gradient(90deg, rgb(2, 0, 26) 0%, rgb(4 0 20) 58%, rgb(0, 0, 0) 100%); */
+}
+h1,
+h2,
+h3 {
+  color: white;
+}

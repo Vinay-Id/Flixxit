@@ -1,0 +1,154 @@
+
+.profile-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-header {
+  margin-top: 70px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.profile-section {
+  width: 100%;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.preferences-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.preferences-form select,
+.preferences-form input[type="checkbox"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.suggestions-section {
+  margin-top: 20px;
+}
+
+.suggestions-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.suggestion-card {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.suggestion-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.suggestion-card p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.contentList {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.contentList img {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 5px;
+}
+
+.contentList h2 {
+  font-size: 18px;
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.become-member-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.become-member-button:hover {
+  background-color: #ff464f;
+}
+.glowing-badge {
+  background-color: rgb(41 43 45 / 99%);
+  color: #d8993a;
+  padding: 1px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  animation: glow 2.5s infinite;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.content-list {
+  max-height: 400px; 
+  overflow-y: auto;
+}
+
+
+.content-list-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+
+
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px 0 rgba(235, 241, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(235, 241, 0, 0.3);
+  }
+}
+

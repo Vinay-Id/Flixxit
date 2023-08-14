@@ -1,0 +1,90 @@
+.payment-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+.payment-container{
+  margin-top: 70px;
+}
+.payment-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.payment-container p{
+  color: white;
+}
+
+.plan-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.plan {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.plan.selected {
+  border-color: #e50914;
+  background-color: #e50914
+  /* background-color: #f7f7f7; */
+}
+
+.plan h3 {
+  font-size: 18px;
+}
+
+.plan p {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.invoice {
+  border-top: 2px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.invoice h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.invoice p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #e50914;
+  margin: 10px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff464f;
+}
+
+@media screen and (max-width: 600px) {
+  .plan-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

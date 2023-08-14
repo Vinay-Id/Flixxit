@@ -1,0 +1,35 @@
+.category-page {
+  padding: 20px;
+  margin-top: 70px;
+}
+.category-page h1 {
+  text-align: center;
+}
+.category-dropdown {
+  margin-bottom: 20px;
+}
+
+.category-dropdown label {
+  font-size: 18px;
+  margin-right: 10px;
+  color: black;
+}
+
+.category-dropdown select {
+  font-size: 16px;
+  padding: 5px;
+  color: black;
+}
+.category-dropdown select option {
+  color: black;
+}
+
+.movies-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.category-dropdown label{
+  color: #bcbcbc;
+  margin-left: 12px;
+}

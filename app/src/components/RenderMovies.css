@@ -1,0 +1,62 @@
+.popular-movies-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.Movie-title {
+  padding: 20px;
+  text-align: center;
+}
+
+.popular-movies-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 50px;
+  color: #ffffff;
+  padding: 0 10px;
+}
+
+.carousel-button.next {
+  margin-left: auto;
+  z-index: 20;
+  position: absolute;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-button.prev {
+  margin-right: auto;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  position: absolute;
+  left: 5px;
+}
+
+.carousel-button.next:hover,
+.carousel-button.prev:hover {
+  background-color: #ff464f;
+}
+
+.popular-movies-container:hover .carousel-button {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .popular-movies-slider .movie-card {
+    flex: 0 0 calc(100% / 3);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popular-movies-slider .movie-card {
+    flex: 0 0 100%;
+  }
+}
