@@ -19,7 +19,7 @@ const Profile = () => {
   const [watched, setWatched] = useState([]);
   const [suggestedMovie, setSuggestedMovie] = useState([]);
   const [logoutApiCall] = useLogoutMutation();
-  const checkMember = useSelector((state) => state.myMovie.plusUser);
+  // const checkMember = useSelector((state) => state.myMovie.plusUser);
   const [updateProfile] = useUpdateUserMutation();
   const selectPreference = {
     28: "Action",

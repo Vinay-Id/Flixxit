@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Carousel.css";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const Carousel = () => {
-
   const data = [
     { id: 1, src: "/assets/caro1.webp", alt: "Image 1" },
     { id: 2, src: "/assets/caro2.webp", alt: "Image 2" },
@@ -15,6 +15,8 @@ const Carousel = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slidesContainerRef = useRef(null);
+  const { userInfo } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const slideWidth = 100;
 
   const prevSlide = useCallback(() => {
@@ -44,15 +46,13 @@ const Carousel = () => {
     };
   }, [nextSlide]);
 
-  const navigate = useNavigate();
-
   return (
     <div className="carousel">
       <div className="slides-container" ref={slidesContainerRef}>
         {data.map((item) => (
           <div key={item.id} className="slide">
             <img src={item.src} alt={item.alt} />
-            <button className="play-button" onClick={() => navigate("/videos")}>
+            <div className="play-button">
               <span className="detail-span">
                 Unlimited movies,
                 <br />
@@ -60,8 +60,20 @@ const Carousel = () => {
               </span>
               <br />
               <br />
-              <span className="span-button"> Play Now </span>
-            </button>
+              <button
+                className="btn"
+                onClick={
+                  userInfo.membership === "Plus"
+                    ? () => navigate("/videos")
+                    : () => toast.info("Only accessible for Flixxit Plus users")
+                }
+              >
+                Watch Now
+              </button>
+              <button className="btn btn2" onClick={()=>navigate("/profile")}>
+                Get Detail
+              </button>
+            </div>
           </div>
         ))}
       </div>

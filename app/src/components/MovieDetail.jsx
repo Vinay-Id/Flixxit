@@ -98,13 +98,10 @@ const MovieDetailPage = () => {
 
   const addToWatchlist = async () => {
     try {
-      const response = await axios.post(
-        "/api/watchlist/add",
-        {
-          userId: userInfo._id,
-          data: movieDetails,
-        }
-      );
+      const response = await axios.post("/api/watchlist/add", {
+        userId: userInfo._id,
+        data: movieDetails,
+      });
 
       toast.success(response.data.msg);
     } catch (error) {
@@ -153,21 +150,27 @@ const MovieDetailPage = () => {
               <p>Release Date: {movieDetails.release_date}</p>
               <p>Vote Average: {movieDetails.vote_average}</p>
             </div>
-            <button onClick={() => setPlay(!play)}>
+            <button
+              onClick={() =>
+                userInfo.membership === "Plus"
+                  ? setPlay(!play)
+                  : toast.info("Only accessible for Flixxit Plus users")
+              }
+            >
               Watch <AiFillPlayCircle />
             </button>
             <button onClick={addToWatchlist}>
               Add <AiOutlinePlus />
             </button>
             <button onClick={() => updateVoteType(1)}>
-               <span style={{ color: userVote === 1 ? "black" : "white" }}>
-              ({allUserVote[1] || 0}) 
+              <span style={{ color: userVote === 1 ? "black" : "white" }}>
+                ({allUserVote[1] || 0})
                 <AiFillLike />
               </span>
             </button>
             <button onClick={() => updateVoteType(2)}>
               <span style={{ color: userVote === 2 ? "black" : "white" }}>
-              ({allUserVote[2] || 0})
+                ({allUserVote[2] || 0})
                 <AiFillDislike />
               </span>
             </button>
