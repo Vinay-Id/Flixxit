@@ -1,4 +1,3 @@
-
 .profile-container {
   width: 100%;
   max-width: 1200px;
@@ -116,6 +115,7 @@
   background-color: #ff464f;
 }
 .glowing-badge {
+  margin-left: 5px;
   background-color: rgb(41 43 45 / 99%);
   color: #d8993a;
   padding: 1px 8px;
@@ -129,22 +129,18 @@
 }
 
 .content-list {
-  max-height: 400px; 
+  max-height: 400px;
   overflow-y: auto;
 }
-
 
 .content-list-button {
   text-align: center;
   margin-top: 10px;
 }
 
-
-
-
-
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px 0 rgba(235, 241, 0, 0.7);
   }
   50% {
@@ -152,3 +148,13 @@
   }
 }
 
+@media screen and (max-width: 780px) {
+  .profile-header {
+    margin-top: 5px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .contentList h2 {
+    display: none;
+  }
+}

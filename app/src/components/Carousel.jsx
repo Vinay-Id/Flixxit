@@ -60,7 +60,7 @@ const Carousel = () => {
               </span>
               <br />
               <br />
-              <span className="span-button"> ▶ Play Now </span>
+              <span className="span-button"> Play Now </span>
             </button>
           </div>
         ))}

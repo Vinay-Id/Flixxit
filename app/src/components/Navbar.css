@@ -78,7 +78,8 @@ nav {
   margin: 6px 0;
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) { */
+@media screen and (max-width: 900px) {
   .logo a {
     font-size: 24px;
   }

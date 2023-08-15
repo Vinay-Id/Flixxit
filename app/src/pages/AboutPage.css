@@ -4,12 +4,11 @@
   padding: 20px;
 }
 
-.about-us-container{
-  margin-top: 70px;
-}
+
 .about-us-page h1{
   text-align: center;
   color: white;
+  margin-top: 70px;
 }
 .section {
   margin-bottom: 30px;
@@ -21,7 +20,11 @@
 .section h2{
   color: black;
 }
-
+@media screen and (max-width: 780px) {
+  .about-us-page h1 {
+    margin-top: 5px;
+  }}
+  
 @media screen and (max-width: 768px) {
   .section {
     padding: 15px;

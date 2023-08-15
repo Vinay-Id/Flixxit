@@ -160,14 +160,14 @@ const MovieDetailPage = () => {
               Add <AiOutlinePlus />
             </button>
             <button onClick={() => updateVoteType(1)}>
-              ({allUserVote[1] || 0}) 
                <span style={{ color: userVote === 1 ? "black" : "white" }}>
+              ({allUserVote[1] || 0}) 
                 <AiFillLike />
               </span>
             </button>
             <button onClick={() => updateVoteType(2)}>
-              ({allUserVote[2] || 0})
               <span style={{ color: userVote === 2 ? "black" : "white" }}>
+              ({allUserVote[2] || 0})
                 <AiFillDislike />
               </span>
             </button>

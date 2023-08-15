@@ -41,9 +41,7 @@ const Profile = () => {
 
   const getMovieForUser = async () => {
     try {
-      const response = await axios.get(
-        `/api/movie/all/${userInfo._id}`
-      );
+      const response = await axios.get(`/api/movie/all/${userInfo._id}`);
       setWatched(response.data);
     } catch (error) {
       console.error("Error creating movie:", error);
@@ -88,12 +86,13 @@ const Profile = () => {
     setSelectedGenre(event.target.value);
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (Interests, member) => {
     try {
       const res = await updateProfile({
         _id: userInfo._id,
-        preference: selectedGenre,
-        jwt:userInfo.jwt
+        preference: Interests,
+        jwt: userInfo.jwt,
+        membership: member,
       }).unwrap();
       dispatch(setCredentials(res));
       toast.success("Profile updated successfully");
@@ -124,7 +123,9 @@ const Profile = () => {
           <h2>Account Information</h2>
           <p>
             Name: {userInfo.name || "user"}{" "}
-            {checkMember && <span className="glowing-badge">Plus</span>}
+            {userInfo.membership === "Plus" && (
+              <span className="glowing-badge">Plus</span>
+            )}
           </p>
           <p>Email: {userInfo.email || "johndoe@example.com"}</p>
           <p>Preference: {selectPreference[userInfo.preference] || "Action"}</p>
@@ -146,10 +147,14 @@ const Profile = () => {
                 </option>
               ))}
             </select>
-            <button onClick={submitHandler}>Save Preferences</button>
+            <button
+              onClick={() => submitHandler(selectedGenre, userInfo.membership)}
+            >
+              Save Preferences
+            </button>
           </div>
           {/* Suggestions Based on Your Interests */}
-          <div className="suggestions-section" >
+          <div className="suggestions-section">
             <h2>Suggestions Based on Your Interests</h2>
             <div className="suggestions-list" style={{ color: "black" }}>
               {suggestedMovie.slice(0, 3).map((movie) => (
@@ -159,7 +164,7 @@ const Profile = () => {
           </div>
         </div>
         {/* Become Flixxit Plus Member */}
-        {!checkMember && (
+        {userInfo.membership === "NotPlus" ? (
           <div className="profile-section">
             <h2>Become Flixxit Plus Member</h2>
             <p>Upgrade your account to enjoy premium features.</p>
@@ -167,12 +172,26 @@ const Profile = () => {
               Become Flixxit Plus Member
             </Link>
           </div>
+        ) : (
+          <div className="profile-section">
+            <h2>Cancel Flixxit Plus Membership</h2>
+            <p>
+              You are currently a Flixxit Plus member, enjoying premium
+              features.{" "}
+            </p>
+            <button
+              onClick={() => submitHandler(userInfo.preference, "NotPlus")}
+              className="become-member-button"
+            >
+              Cancel Flixxit Plus Membership
+            </button>
+          </div>
         )}
         {/* Content Consumed */}
         <div className="profile-section">
           <h2>Content Consumed</h2>
           {watched.length > 0 ? (
-            <div className="content-list" >
+            <div className="content-list">
               {watched.map((movie) => (
                 <div className="contentList" key={movie.movieTitle}>
                   <img src={movie.movieImage} alt={movie.movieTitle} />

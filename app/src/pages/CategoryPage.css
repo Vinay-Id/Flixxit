@@ -4,6 +4,7 @@
 }
 .category-page h1 {
   text-align: center;
+ 
 }
 .category-dropdown {
   margin-bottom: 20px;
@@ -33,3 +34,7 @@
   color: #bcbcbc;
   margin-left: 12px;
 }
+@media screen and (max-width: 780px) {
+  .category-page  {
+    margin-top: 5px;
+  }}

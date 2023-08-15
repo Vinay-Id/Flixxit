@@ -18,8 +18,7 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState("transparent");
-  const [menuActive, setMenuActive] = useState(false); // State for hamburger menu
-
+  const [menuActive, setMenuActive] = useState(false);
   useEffect(() => {
     let previousScrollY = window.scrollY;
 

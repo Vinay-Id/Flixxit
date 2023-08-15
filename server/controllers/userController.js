@@ -17,6 +17,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       preference: user.preference,
+      membership: user.membership,
       jwt: token,
     });
   } else {
@@ -52,6 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       preference: user.preference,
+      membership: user.membership,
       jwt: token,
     });
   } else {
@@ -77,6 +79,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       preference: user.preference,
+      membership: user.membership,
+      jwt: token,
     });
   } else {
     res.status(404);
@@ -92,8 +96,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
-    user.preference = req.body.preference;
-
+    user.preference = req.body.preference || user.preference;
+    user.membership = req.body.membership || user.membership;
     const updatedUser = await user.save();
 
     res.json({
@@ -101,6 +105,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       preference: updatedUser.preference,
+      membership: updatedUser.membership,
       jwt: token,
     });
   } else {

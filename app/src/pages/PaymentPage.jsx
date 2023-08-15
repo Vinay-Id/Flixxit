@@ -2,13 +2,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PaymentPage.css";
-import {  useDispatch } from "react-redux";
-import { membership } from "../slices/movieSlice";
+import {  useDispatch,useSelector } from "react-redux";
+// import { membership } from "../slices/movieSlice";
+import { setCredentials } from "../slices/authSlice";
+import { useUpdateUserMutation } from "../slices/usersApiSlice";
 import { toast } from 'react-toastify';
 
 const PaymentPage = () => {
   const navigate = useNavigate();
   const [selectedPlan, setSelectedPlan] = useState("monthly");
+  const [updateProfile] = useUpdateUserMutation();
+  const { userInfo } = useSelector((state) => state.auth);
   const plans = {
     monthly: {
       name: "Monthly Plan",
@@ -24,11 +28,24 @@ const PaymentPage = () => {
     setSelectedPlan(plan);
   };
   const dispatch= useDispatch()
-  const handlePayNow = () => {
+  const handlePayNow = async() => {
 
-    dispatch(membership())
-    toast.success(`Payment successful for ${plans[selectedPlan].name}`);
-    navigate("/profile");
+    try {
+      const res = await updateProfile({
+        _id: userInfo._id,
+        membership:"Plus",
+        jwt:userInfo.jwt
+      }).unwrap();
+      dispatch(setCredentials(res));
+      toast.success(`Payment successful for ${plans[selectedPlan].name}`);
+      navigate("/profile");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+
+    // dispatch(membership())
+    // toast.success(`Payment successful for ${plans[selectedPlan].name}`);
+    // navigate("/profile");
   };
   
   return (
