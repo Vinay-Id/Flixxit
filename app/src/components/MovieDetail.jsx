@@ -52,6 +52,7 @@ const MovieDetailPage = () => {
       const apiKey = process.env.REACT_APP_API_KEY;
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`
+        // `https://api.themoviedb.org/3/movie/{id}/similar?api_key=${apiKey}`
       );
       const recommendedMoviesWithImage = response.data.results.filter(
         (movie) => movie.backdrop_path
@@ -147,14 +148,17 @@ const MovieDetailPage = () => {
             <h2>{movieDetails.title}</h2>
             <p className="movie-overview">{movieDetails.overview}</p>
             <div className="movie-details">
-              <p>Release Date: {movieDetails.release_date}</p>
-              <p>Vote Average: {movieDetails.vote_average}</p>
+              <p>
+                Release Date: {movieDetails.release_date}
+                &nbsp;&nbsp;&nbsp; Vote Average:
+                {movieDetails.vote_average}
+              </p>
             </div>
             <button
               onClick={() =>
                 userInfo.membership === "Plus"
                   ? setPlay(!play)
-                  : toast.info("Only accessible for Flixxit Plus users")
+                  : toast.info("Only accessible for Flixxit Plus Members")
               }
             >
               Watch <AiFillPlayCircle />
@@ -162,13 +166,13 @@ const MovieDetailPage = () => {
             <button onClick={addToWatchlist}>
               Add <AiOutlinePlus />
             </button>
-            <button onClick={() => updateVoteType(1)}>
+            <button onClick={() => updateVoteType(userVote === 1 ? 0 : 1)}>
               <span style={{ color: userVote === 1 ? "black" : "white" }}>
                 ({allUserVote[1] || 0})
                 <AiFillLike />
               </span>
             </button>
-            <button onClick={() => updateVoteType(2)}>
+            <button onClick={() => updateVoteType(userVote === 2 ? 0 : 2)}>
               <span style={{ color: userVote === 2 ? "black" : "white" }}>
                 ({allUserVote[2] || 0})
                 <AiFillDislike />

@@ -20,8 +20,19 @@
 .button-container{
   text-align: center;
 }
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 24px;
+  
+}
 
 @media screen and (max-width: 780px) {
   .watchlist-container h1 {
     margin-top: 5px;
   }}
+ 
+  
+  

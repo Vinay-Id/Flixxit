@@ -1,4 +1,3 @@
-
 .movie-card {
   position: relative;
   display: inline-block;
@@ -20,6 +19,9 @@
 
 #movieTitle {
   color: white;
+  text-align: center;
+}
+#profileMovieTitle{
   text-align: center;
 }
 
@@ -44,7 +46,7 @@
   color: #777;
 }
 
-/* Responsive styles */
+
 @media screen and (max-width: 768px) {
   .movies-container {
     display: grid;

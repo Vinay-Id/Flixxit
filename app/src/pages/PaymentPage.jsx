@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PaymentPage.css";
 import {  useDispatch,useSelector } from "react-redux";
-// import { membership } from "../slices/movieSlice";
 import { setCredentials } from "../slices/authSlice";
 import { useUpdateUserMutation } from "../slices/usersApiSlice";
 import { toast } from 'react-toastify';
@@ -43,9 +42,6 @@ const PaymentPage = () => {
       toast.error(err?.data?.message || err.error);
     }
 
-    // dispatch(membership())
-    // toast.success(`Payment successful for ${plans[selectedPlan].name}`);
-    // navigate("/profile");
   };
   
   return (

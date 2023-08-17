@@ -13,7 +13,7 @@ const VideoPlayer = ({ play, setPlay }) => {
 
   const handleSkipIntro = () => {
     if (player) {
-      const secondsToSkip = 18;
+      const secondsToSkip = 6;
       player.seekTo(secondsToSkip, "seconds");
       setSkipIntro(true);
     }

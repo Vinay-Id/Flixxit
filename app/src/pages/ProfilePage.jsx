@@ -124,13 +124,57 @@ const Profile = () => {
           <p>
             Name: {userInfo.name || "user"}{" "}
             {userInfo.membership === "Plus" && (
-              <span className="glowing-badge">Plus</span>
+              <span className="shining-badge">Plus</span>
             )}
           </p>
           <p>Email: {userInfo.email || "johndoe@example.com"}</p>
           <p>Preference: {selectPreference[userInfo.preference] || "Action"}</p>
           <button onClick={logoutHandler}>Logout</button>
         </div>
+        {/* Content Consumed */}
+        <div className="profile-section">
+          <h2>Content Consumed</h2>
+          {watched.length > 0 ? (
+            <div className="content-list">
+              {watched.map((movie) => (
+                <div className="contentList" key={movie.movieTitle}>
+                  <img src={movie.movieImage} alt={movie.movieTitle} />
+                  <h2>{movie.movieTitle}</h2>
+                  {/* {console.log(movie)} */}
+                  <button onClick={() => handleDelete(movie.movieId)}>
+                    remove
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No movies</p>
+          )}
+        </div>
+        {/* Become Flixxit Plus Member */}
+        {userInfo.membership === "NotPlus" ? (
+          <div className="profile-section">
+            <h2>Become Flixxit Plus Member</h2>
+            <p>Upgrade your account to enjoy premium features.</p>
+            <Link to="/payment" className="become-member-button">
+              Become Flixxit Plus Member
+            </Link>
+          </div>
+        ) : (
+          <div className="profile-section">
+            <h2>Cancel Flixxit Plus Membership</h2>
+            <p>
+              You are currently a Flixxit Plus member, enjoying premium
+              features.{" "}
+            </p>
+            <button
+              onClick={() => submitHandler(userInfo.preference, "NotPlus")}
+              className="become-member-button"
+            >
+              Cancel Flixxit Plus Membership
+            </button>
+          </div>
+        )}
         {/* Interests and Preferences */}
         <div className="profile-section">
           <h2>Interests and Preferences</h2>
@@ -158,54 +202,10 @@ const Profile = () => {
             <h2>Suggestions Based on Your Interests</h2>
             <div className="suggestions-list" style={{ color: "black" }}>
               {suggestedMovie.slice(0, 3).map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
+                <MovieCard key={movie.id} movie={movie} type={"profile"} />
               ))}
             </div>
           </div>
-        </div>
-        {/* Become Flixxit Plus Member */}
-        {userInfo.membership === "NotPlus" ? (
-          <div className="profile-section">
-            <h2>Become Flixxit Plus Member</h2>
-            <p>Upgrade your account to enjoy premium features.</p>
-            <Link to="/payment" className="become-member-button">
-              Become Flixxit Plus Member
-            </Link>
-          </div>
-        ) : (
-          <div className="profile-section">
-            <h2>Cancel Flixxit Plus Membership</h2>
-            <p>
-              You are currently a Flixxit Plus member, enjoying premium
-              features.{" "}
-            </p>
-            <button
-              onClick={() => submitHandler(userInfo.preference, "NotPlus")}
-              className="become-member-button"
-            >
-              Cancel Flixxit Plus Membership
-            </button>
-          </div>
-        )}
-        {/* Content Consumed */}
-        <div className="profile-section">
-          <h2>Content Consumed</h2>
-          {watched.length > 0 ? (
-            <div className="content-list">
-              {watched.map((movie) => (
-                <div className="contentList" key={movie.movieTitle}>
-                  <img src={movie.movieImage} alt={movie.movieTitle} />
-                  <h2>{movie.movieTitle}</h2>
-                  {/* {console.log(movie)} */}
-                  <button onClick={() => handleDelete(movie.movieId)}>
-                    remove
-                  </button>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No movies</p>
-          )}
         </div>
       </div>
     </div>

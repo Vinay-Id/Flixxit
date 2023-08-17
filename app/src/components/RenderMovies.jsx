@@ -3,7 +3,7 @@ import axios from "axios";
 import "./RenderMovies.css";
 import MovieCard from "./MovieCard";
 import { useDispatch } from "react-redux";
-// import { fetchMoviesData } from "../slices/movieSlice";
+import { fetchMoviesData } from "../slices/movieSlice";
 
 const RenderMovies = ({ title, apiurl }) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const RenderMovies = ({ title, apiurl }) => {
     async function fetchMovies() {
       try {
         const response = await axios.get(apiurl);
-        // dispatch(fetchMoviesData(response.data.results));
+        dispatch(fetchMoviesData(response.data.results));
         setMovies(response.data.results);
       } catch (error) {
         console.error("Error fetching popular movies:", error);

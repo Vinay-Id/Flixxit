@@ -111,23 +111,6 @@
   transition: background-color 0.3s;
 }
 
-.become-member-button:hover {
-  background-color: #ff464f;
-}
-.glowing-badge {
-  margin-left: 5px;
-  background-color: rgb(41 43 45 / 99%);
-  color: #d8993a;
-  padding: 1px 8px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  animation: glow 2.5s infinite;
-  cursor: pointer;
-  display: inline-block;
-}
-
 .content-list {
   max-height: 400px;
   overflow-y: auto;
@@ -138,16 +121,29 @@
   margin-top: 10px;
 }
 
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px 0 rgba(235, 241, 0, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 20px 10px rgba(235, 241, 0, 0.3);
-  }
+.become-member-button:hover {
+  background-color: #ff464f;
 }
 
+.shining-badge {
+  display: inline-block;
+  position: relative;
+
+  background: linear-gradient(45deg, #f06, #fc0);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 3s infinite;
+  font-weight: bolder;
+}
+
+@keyframes shine {
+  0%, 100% {
+    text-shadow: none;
+  }
+  20%, 60% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+}
 @media screen and (max-width: 780px) {
   .profile-header {
     margin-top: 5px;
@@ -158,3 +154,5 @@
     display: none;
   }
 }
+
+

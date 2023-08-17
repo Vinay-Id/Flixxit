@@ -28,6 +28,7 @@
 .movie-details-container p {
   font-size: 16px;
   margin-bottom: 10px;
+  padding-bottom: 1px;
 }
 
 .movie-overview {
@@ -47,7 +48,9 @@
 
 .movie-details p {
   font-size: 14px;
-  font-weight: bold;
+  /* font-weight: bold; */
+  color: white;
+  padding: 20px;
 }
 
 .movie-details-container button {

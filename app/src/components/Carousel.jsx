@@ -5,12 +5,38 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 const Carousel = () => {
   const data = [
-    { id: 1, src: "/assets/caro1.webp", alt: "Image 1" },
-    { id: 2, src: "/assets/caro2.webp", alt: "Image 2" },
-    { id: 3, src: "/assets/caro3.webp", alt: "Image 3" },
-    { id: 4, src: "/assets/caro4.webp", alt: "Image 4" },
-    { id: 5, src: "/assets/caro5.webp", alt: "Image 5" },
-    { id: 6, src: "/assets/caro6.webp", alt: "Image 6" },
+    {
+      id: 603692,
+      src: "/assets/caro1.webp",
+      alt: "Image 1",
+      title: "John Wick: Chapter 4",
+    },
+    {
+      id: 667538,
+      src: "/assets/caro2.webp",
+      alt: "Image 2",
+      title: "Transformers: Rise of the Beasts",
+    },
+    {
+      id: 502356,
+      src: "/assets/caro3.webp",
+      alt: "Image 3",
+      title: "The Super Mario Bros. Movie",
+    },
+    {
+      id: 594767,
+      src: "/assets/caro4.webp",
+      alt: "Image 4",
+      title: "Shazam! Fury of the Gods",
+    },
+    { id: 385687, src: "/assets/caro5.webp", alt: "Image 5", title: "Fast X" },
+
+    {
+      id: 569094,
+      src: "/assets/caro6.webp",
+      alt: "Image 6",
+      title: "Spider-Man: Across the Spider-Verse",
+    },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -53,11 +79,8 @@ const Carousel = () => {
           <div key={item.id} className="slide">
             <img src={item.src} alt={item.alt} />
             <div className="play-button">
-              <span className="detail-span">
-                Unlimited movies,
-                <br />
-                shows and more
-              </span>
+              <span className="detail-span">{item.title}</span>
+
               <br />
               <br />
               <button
@@ -65,12 +88,16 @@ const Carousel = () => {
                 onClick={
                   userInfo.membership === "Plus"
                     ? () => navigate("/videos")
-                    : () => toast.info("Only accessible for Flixxit Plus users")
+                    : () =>
+                        toast.info("Only accessible for Flixxit Plus Members")
                 }
               >
                 Watch Now
               </button>
-              <button className="btn btn2" onClick={()=>navigate("/profile")}>
+              <button
+                className="btn btn2"
+                onClick={() => navigate(`/movie/${item.id}`)}
+              >
                 Get Detail
               </button>
             </div>

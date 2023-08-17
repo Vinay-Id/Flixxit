@@ -3,13 +3,12 @@ import "./WatchlistPage.css";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-// import { BounceLoader } from "react-spinners";
+import MovieCard from "../components/MovieCard";
+import { BarLoader } from "react-spinners"; 
 const Watchlist = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [movies, setMovies] = useState([]);
-  const navigate = useNavigate();
-  const [hovered, setHovered] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchWatchlist = async () => {
@@ -18,9 +17,10 @@ const Watchlist = () => {
           `/api/watchlist/liked/${userInfo._id}`
         );
         setMovies(response.data.movies);
-        setHovered(Array(response.data.movies.length).fill(false));
+        setLoading(false); 
       } catch (error) {
         console.log("Error fetching watchlist");
+        setLoading(false); 
       }
     };
     fetchWatchlist();
@@ -40,57 +40,27 @@ const Watchlist = () => {
     }
   };
 
-  const handleCardClick = (movie) => {
-    if (movie && movie.id) {
-      navigate(`/movie/${movie.id}`);
-    }
-  };
-
   return (
     <div className="watchlist-container">
-      
       <h1>Watchlist</h1>
-      <div className="cardContainer">
-        {movies.length > 0 ? (
-          movies.map((movie, index) => (
-            <div
-              key={movie.id}
-              className={`movie-card ${hovered[index] ? "hovered" : ""}`}
-              onMouseEnter={() => {
-                const updatedHovered = [...hovered];
-                updatedHovered[index] = true;
-                setHovered(updatedHovered);
-              }}
-              onMouseLeave={() => {
-                const updatedHovered = [...hovered];
-                updatedHovered[index] = false;
-                setHovered(updatedHovered);
-              }}
-            >
-              {movie.backdrop_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                  alt={movie.title}
-                />
-              ) : (
-                <div className="no-poster">No Poster Available</div>
-              )}
-              <h3 id="movieTitle">{movie?.title || "Unknown Title"}</h3>
-              <div className="button-container">
-                <button onClick={() => removeFromWatchlist(movie.id)}>
-                  Remove
-                </button>
-                <button onClick={() => handleCardClick(movie)}>Detail</button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="suggested-programs">
-            <h2>No movies</h2>
-          </div>
-          // </div>:<BounceLoader color="rgba(255, 7, 7, 1)" />
-        )}
-      </div>
+      {loading ? (
+        <div className="loading-spinner"><BarLoader color="#ff464f" /></div>
+      ) : (
+        <div className="cardContainer">
+          {movies.length > 0 ? (
+            movies.map((movie, index) => (
+              <MovieCard
+                key={index}
+                movie={movie}
+                type="watchlist"
+                removeFromWatchlist={removeFromWatchlist}
+              />
+            ))
+          ) : (
+            <h2>Your watchlist is empty.</h2>
+          )}
+        </div>
+      )}
     </div>
   );
 };
