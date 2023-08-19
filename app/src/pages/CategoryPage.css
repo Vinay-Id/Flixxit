@@ -4,7 +4,6 @@
 }
 .category-page h1 {
   text-align: center;
- 
 }
 .category-dropdown {
   margin-bottom: 20px;
@@ -30,11 +29,17 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.category-dropdown label{
+.category-dropdown label {
   color: #bcbcbc;
   margin-left: 12px;
 }
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; 
+}
 @media screen and (max-width: 780px) {
-  .category-page  {
+  .category-page {
     margin-top: 5px;
-  }}
+  }
+}

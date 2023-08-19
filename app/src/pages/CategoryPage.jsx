@@ -23,24 +23,42 @@ const selectGenreData = {
 
 const CategoryPage = () => {
   const [genreOptions, setGenreOptions] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(""); 
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
 
-  const fetchMoviesByGenre = useCallback(async (genreId) => {
+  const fetchMoviesByGenre = useCallback(async (genreId, page) => {
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
       const url = genreId
-        ? `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
-        : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+        ? `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}`
+        : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
       const response = await axios.get(url);
-      setMovies(response.data.results);
+
+      if (page === 1) {
+        setMovies(response.data.results);
+      } else {
+        setMovies((prevMovies) => {
+          const newMovies = response.data.results.filter(
+            (movie) =>
+              !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+          );
+          return [...prevMovies, ...newMovies];
+        });
+      }
     } catch (error) {
       console.error("Error fetching movies by genre:", error);
     }
   }, []);
-
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
+    setPage(1); 
+  };
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchMoviesByGenre(selectedGenre, nextPage);
   };
 
   useEffect(() => {
@@ -52,8 +70,8 @@ const CategoryPage = () => {
   }, []);
 
   useEffect(() => {
-    fetchMoviesByGenre(selectedGenre);
-  }, [selectedGenre, fetchMoviesByGenre]);
+    fetchMoviesByGenre(selectedGenre, page);
+  }, [selectedGenre, page, fetchMoviesByGenre]);
 
   return (
     <div className="category-page">
@@ -77,6 +95,11 @@ const CategoryPage = () => {
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
+      </div>
+      <div className="load-more-container">
+        <button className="load-more-button" onClick={handleLoadMore}>
+          Load More
+        </button>
       </div>
     </div>
   );

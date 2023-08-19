@@ -52,7 +52,7 @@ const MovieDetailPage = () => {
       const apiKey = process.env.REACT_APP_API_KEY;
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}`
-        // `https://api.themoviedb.org/3/movie/{id}/similar?api_key=${apiKey}`
+        // `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}`
       );
       const recommendedMoviesWithImage = response.data.results.filter(
         (movie) => movie.backdrop_path

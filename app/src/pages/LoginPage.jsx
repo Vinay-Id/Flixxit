@@ -24,11 +24,11 @@ const Login = () => {
   }, [navigate, userInfo]);
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value.trim()); // Remove leading and trailing white spaces
+    setEmail(e.target.value.trim());
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value.trim()); // Remove leading and trailing white spaces
+    setPassword(e.target.value.trim()); 
   };
 
   const submitHandler = async (e) => {
@@ -63,14 +63,14 @@ const Login = () => {
           name="email"
           placeholder="Email"
           value={email}
-          onChange={handleEmailChange} // Use the updated event handler
+          onChange={handleEmailChange}
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={password}
-          onChange={handlePasswordChange} // Use the updated event handler
+          onChange={handlePasswordChange}
         />
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Loading..." : "Login"}
