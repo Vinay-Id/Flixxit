@@ -100,6 +100,7 @@ To get started with Flixxit, follow these steps:
    ```
 
    The backend server will be up and running, ready to serve data to the frontend.
+   
 
 
 
